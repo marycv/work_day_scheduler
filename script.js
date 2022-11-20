@@ -11,29 +11,39 @@ currentDayEl.append(currentTime);
 // DECLARE Time Entries Container HTML Element
 var containerEl = $('#timeEntries');
 
-
-// DECLARE current hour
-var currentHour = moment().format('H');
     // Compare i to current hour to determine if this hour is in the past, present, or future
 function currentTense() {
-    for (var i = 8; i < 18; i++) {
-        if (i > currentHour) {
+    // DECLARE current hour
+    var currentHour = moment().format('H');
+    // Time Block array
+    
+    var timeBlock = document.querySelectorAll('.time-block');
+    
+    var timeBlockArray = timeBlock[i];
+    console.log(timeBlockArray);
+    // Get textArea element to add tense
+    var textArea = document.getElementById("textArea");
+
+    for (i=8; i < timeBlockArray.length; i++)
+        // for (var i = 8; i < 18; i++) {
+        if (timeBlock < currentHour) {
             // change color of textarea to green;
-            document.getElementById(i).classList.add('future');
-            tense = 'future';
-        } else if (i < currentHour) {
+            // timeBlock.addClass('past');
+            textArea.classList.add('past');
+        } else if (timeBlock === currentHour) {
             // change color of text area to grey;
-            document.getElementById(i).classList.add('past');
-            tense = 'past';
+            timeBlock.removeClass('past');
+            timeBlock.addClass('present');
         } else {
             // change color of text area to red;
-            document.getElementById(i).classList.add('present');
-            tense = 'present';
+            timeBlock.removeClass('past');
+            timeBlock.removeClass('present');
+            timeBlock.addClass('future');
         }
 
 
-    }
 };
+// };
 
 currentTense();
 
